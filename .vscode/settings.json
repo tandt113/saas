@@ -1,0 +1,10 @@
+{
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "nuxt.isNuxtApp": true,
+  "files.associations": {
+    "*.vue": "vue"
+  },
+  "typescript.workspaceSymbols.scope": "allOpenProjects"
+}
