@@ -66,70 +66,148 @@ const posts = ref([
     date: "2024-08-22",
   },
 ]);
+
+const features = ref([
+  {
+    title: "Icons",
+    description:
+      "Nuxt UI integrates with Nuxt Icon to access over 200,000+ icons from Iconify.",
+    icon: "i-lucide-smile",
+    to: "/docs/getting-started/integrations/icons",
+  },
+  {
+    title: "Fonts",
+    description:
+      "Nuxt UI integrates with Nuxt Fonts to provide plug-and-play font optimization.",
+    icon: "i-lucide-a-large-small",
+    to: "/docs/getting-started/integrations/fonts",
+  },
+  {
+    title: "Color Mode",
+    description:
+      "Nuxt UI integrates with Nuxt Color Mode to switch between light and dark.",
+    icon: "i-lucide-sun-moon",
+    to: "/docs/getting-started/integrations/color-mode",
+  },
+]);
+
+const links: Ref<any[]> = ref([
+  {
+    label: "Explore components",
+    to: "/docs/components/app",
+    color: "neutral",
+    variant: "subtle",
+    trailingIcon: "i-lucide-arrow-right",
+  },
+]);
 </script>
 <template>
-  <UPageHero
-    title="Ultimate Vue UI library"
-    description="A Nuxt/Vue-integrated UI library providing a rich set of fully-styled, accessible and highly customizable components for building modern web applications."
-    headline="New release"
-    orientation="horizontal"
-    v-wow="{
-      from: { opacity: 0, x: 80 }, // lẻ: từ phải
-      to: {
-        opacity: 1,
-        x: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        delay: 0.3,
-      },
-    }"
-  >
-    <div>
-      <img
-        src="https://ui.nuxt.com/_ipx/_/blocks/image4.png"
-        alt="App screenshot"
-        class="rounded-lg shadow-2xl ring ring-default"
+  <ClientOnly>
+    <UPageSection
+      title="Bất động sản dành cho bạn"
+      description="Khám phá các lựa chọn bất động sản đa dạng và phù hợp với nhu cầu của bạn."
+      icon="i-lucide-rocket"
+      orientation="vertical"
+      v-wow="{
+        from: { opacity: 0, y: 80 }, // lẻ: từ dưới lên
+        to: {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+        },
+      }"
+    >
+      <BlogPosts :posts="posts" :style="'grid'" />
+    </UPageSection>
+  </ClientOnly>
+  <ClientOnly>
+    <UPageSection
+      title="Bất động sản nổi bật"
+      description="Khám phá các lựa chọn bất động sản đa dạng và phù hợp với nhu cầu của bạn."
+      icon="i-lucide-rocket"
+      orientation="vertical"
+      v-wow="{
+        from: { opacity: 0, y: 80 }, // lẻ: từ dưới lên
+        to: {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+        },
+      }"
+    >
+      <BlogPosts :posts="posts" />
+    </UPageSection>
+  </ClientOnly>
+  <ClientOnly>
+    <UPageSection
+      title="Bài viết mới nhất"
+      description="Khám phá các lựa chọn bất động sản đa dạng và phù hợp với nhu cầu của bạn."
+      icon="i-lucide-rocket"
+      orientation="vertical"
+      v-wow="{
+        from: { opacity: 0, y: 80 },
+        to: {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+        },
+      }"
+    >
+      <BlogPosts :posts="posts" :style="'grid'" />
+    </UPageSection>
+  </ClientOnly>
+  <ClientOnly>
+    <UPageSection
+      title="Đối tác của chúng tôi"
+      icon="i-lucide-rocket"
+      orientation="vertical"
+      v-wow="{
+        from: { opacity: 0, y: 80 },
+        to: {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+        },
+      }"
+    >
+      <UPageLogos
+        marquee
+        :items="[
+          'i-simple-icons-github',
+          'i-simple-icons-discord',
+          'i-simple-icons-x',
+          'i-simple-icons-instagram',
+          'i-simple-icons-linkedin',
+          'i-simple-icons-facebook',
+        ]"
       />
-    </div>
-  </UPageHero>
+    </UPageSection>
+  </ClientOnly>
   <UPageSection
-    title="Bất động sản dành cho bạn"
-    description="Khám phá các lựa chọn bất động sản đa dạng và phù hợp với nhu cầu của bạn."
+    title="Tích hợp AI trong bất động sản"
+    description="Khám phá cách trí tuệ nhân tạo đang thay đổi ngành bất động sản, từ việc tìm kiếm tài sản đến phân tích thị trường và dự đoán xu hướng."
+    :links="links"
     icon="i-lucide-rocket"
-    orientation="vertical"
-    v-wow="{
-      from: { opacity: 0, y: 80 }, // lẻ: từ dưới lên
-      to: {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-      },
-    }"
+    orientation="horizontal"
+    :features="features"
   >
-    <template #icon>
-      <UIcon name="i-heroicons-star" />
-    </template>
-    <BlogPosts :posts="posts" :style="'grid'" />
+    <img
+      src="https://cdn11.dienmaycholon.vn/filewebdmclnew/public/userupload/files/news/di-dong/ai-la-gi-cong-dung-cua-ai.jpg"
+      width="352"
+      height="400"
+      alt="Illustration"
+      class="w-full rounded-lg"
+    />
   </UPageSection>
   <UPageSection
-    title="Bất động sản nổi bật"
-    description="Khám phá các lựa chọn bất động sản đa dạng và phù hợp với nhu cầu của bạn."
+    title="Liên hệ với chúng tôi"
+    description="Chúng tôi luôn sẵn sàng hỗ trợ bạn trong hành trình tìm kiếm bất động sản mơ ước. Hãy liên hệ với chúng tôi để được tư vấn và hỗ trợ nhanh chóng."
     icon="i-lucide-rocket"
-    orientation="vertical"
-    v-wow="{
-      from: { opacity: 0, y: 80 }, // lẻ: từ dưới lên
-      to: {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-      },
-    }"
   >
-    <template #icon>
-      <UIcon name="i-heroicons-star" />
-    </template>
-    <BlogPosts :posts="posts" />
   </UPageSection>
 </template>
+<style scoped></style>

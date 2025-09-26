@@ -11,7 +11,7 @@ onMounted(() => {
 })
 </script>
 <template>
-<div class="relative overflow-hidden w-full  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% ">
+<div class="relative overflow-hidden w-full  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% dark:from-neutral-900 dark:via-neutral-700 dark:to-neutral-900">
     <div class="marquee whitespace-nowrap text-md font-bold font-mono text-white flex items-center">
         <span class="mx-4">🏡</span>
         <span>Chào mừng bạn đến với thế giới bất động sản số 1 tại Việt Nam</span>
