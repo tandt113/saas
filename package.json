@@ -21,6 +21,7 @@
     "@standard-schema/spec": "^1.0.0",
     "@vueuse/nuxt": "^13.9.0",
     "better-sqlite3": "^12.4.1",
+    "gsap": "^3.13.0",
     "i18n": "^0.15.1",
     "nuxt": "^4.0.3",
     "nuxt-og-image": "^5.1.11",
