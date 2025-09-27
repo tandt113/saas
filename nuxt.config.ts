@@ -1,96 +1,64 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
+
+  experimental: {
+    payloadExtraction: false,
+    typedPages: true
+  },
+
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxt/content',
     '@vueuse/nuxt',
-    'nuxt-og-image',
     '@pinia/nuxt',
     '@nuxtjs/i18n'
   ],
 
   pinia: {
-    storesDirs: ['./stores/**'], // auto import các store
+    storesDirs: ['./stores/**'],
   },
 
   i18n: {
-    // nạp file theo thư mục
     langDir: 'locales',
     locales: [
       { code: 'vi', iso: 'vi-VN', file: 'vi.json', name: 'Tiếng Việt' },
       { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' }
     ],
     defaultLocale: 'vi',
-    strategy: 'prefix_except_default', 
+    strategy: 'prefix_except_default',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      redirectOn: 'root', 
-      alwaysRedirect: false, 
+      redirectOn: 'root',
+      alwaysRedirect: false,
     },
-    vueI18n: './i18n.config.ts', 
+    vueI18n: './i18n.config.ts',
   },
 
-  devtools: {
-    enabled: true
+  devtools: { 
+    enabled: process.env.NODE_ENV === 'development'
   },
 
   css: ['~/assets/css/main.css'],
 
-  // Auto import configuration
-  imports: {
-    autoImport: true,
-    global: true,
-    dirs: [
-      'composables',
-      'utils'
-    ]
-  },
-
-  // Components auto import
-  components: [
-    {
-      path: '~/components',
-      pathPrefix: false
-    }
-  ],
-
-  // TypeScript configuration
   typescript: {
-    typeCheck: true,
-    strict: true
+    typeCheck: false
   },
-
-  routeRules: {
-    '/docs': { redirect: '/docs/getting-started', prerender: false }
-  },
-
-  compatibilityDate: '2024-07-11',
 
   nitro: {
-    esbuild: {
-      options: {
-        target: 'es2022'
-      }
-    },
-    prerender: {
-      routes: [
-        '/'
-      ],
-      crawlLinks: true
+    experimental: {
+      wasm: true
     }
   },
 
   eslint: {
-    config: {
-      stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
-    }
+    checker: false
   },
+
+  compatibilityDate: '2024-07-11',
 
   runtimeConfig: {
     apiBase: process.env.API_MAIN,

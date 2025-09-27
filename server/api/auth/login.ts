@@ -1,5 +1,6 @@
 import { apiFetch } from "../../utils/api";
 import { handleApiSuccess, handleApiError } from "../../utils/responseHandler";
+import setTokenCookie from '@/composables/useCookies';
 
 export default defineEventHandler(async (event) => {
   try {
@@ -10,13 +11,7 @@ export default defineEventHandler(async (event) => {
       body,
     });
 
-    setCookie(event, 'accessToken', data.metadata?.accessToken || '', {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
-      path: '/',
-      maxAge: 60 * 60 * 24
-    });
+    setTokenCookie(event, data.metadata?.accessToken || '');
 
     return handleApiSuccess(data, "Đăng nhập thành công");
   } catch (error) {

@@ -107,7 +107,7 @@ const itemsMenu = ref<NavigationMenuItem[][]>([
           }"
         >
           <div class="flex items-center gap-2">
-            <UAvatar :src="user.thumbnail" />
+            <UAvatar :src="user.thumbnail" v-if="user.thumbnail" />
             <span class="font-light">{{ user.firstName }} {{ user.lastName }}</span>
             <UIcon name="i-lucide-chevron-down" class="size-5" />
           </div>

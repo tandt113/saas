@@ -1,8 +1,17 @@
 // middleware/auth.global.ts
-export default defineNuxtRouteMiddleware((to) => {
-    const user = useState<any | null>('auth:user', () => null);
-    const publicPaths = ['/login', '/register', '/forgot-password']
+export default defineNuxtRouteMiddleware(async (to) => {
+  const user = useState<any | null | undefined>('auth:user')
 
-    if (publicPaths.includes(to.path)) return
-    if (!user.value) return navigateTo('/login')
+  const publicPaths = ['/login', '/register', '/forgot-password']
+  const isPublicPath = publicPaths.some(p => to.path === p || to.path.startsWith(p + '/'))
+
+  const isLoggedIn = !!user.value
+
+  if (isLoggedIn && isPublicPath) {
+    return navigateTo('/')
+  }
+
+  if (!isLoggedIn && !isPublicPath) {
+    return navigateTo('/login')
+  }
 })

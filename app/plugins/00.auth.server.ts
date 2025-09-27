@@ -1,17 +1,26 @@
 export default defineNuxtPlugin(async () => {
-    const user = useState<any | null>('auth:user', () => null);
+    // Chỉ chạy trên server
+    if (process.client) return
+
+    const user = useState<any | null>('auth:user', () => null)
+    
+    // Nếu đã có user, không fetch lại
+    if (user.value !== null)  return;
+
     try {
         const headers = useRequestHeaders(['cookie'])
         const response = await $fetch<any>('/api/auth/get-user', {
             headers,
             credentials: 'include'
         })
-        if (response.data.metadata) {
+
+        if (response?.data?.metadata) {
             user.value = response.data.metadata;
         } else {
             user.value = null;
         }
-    } catch {
+    } catch (error) {
         user.value = null;
     }
+    
 })

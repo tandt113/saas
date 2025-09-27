@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BlogPosts from "~/components/base/BlogPosts.vue";
 
+const user = useState<any | null | undefined>('auth:user');
 const posts = ref([
   {
     title: "Nuxt Icon v1",
@@ -102,6 +103,7 @@ const links: Ref<any[]> = ref([
 ]);
 </script>
 <template>
+  <pre>{{ user }}</pre>
   <ClientOnly>
     <UPageSection
       title="Bất động sản dành cho bạn"

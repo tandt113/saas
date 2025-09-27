@@ -1,15 +1,11 @@
-import { sendRedirect } from 'h3'
+import { sendRedirect } from 'h3';
+import setTokenCookie from '@/composables/useCookies';
 
 export default defineEventHandler(async (event) => {
     const query = getQuery<{ accessToken?: string }>(event)
     const accessToken = query.accessToken || ''
-    setCookie(event, 'accessToken', accessToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'lax',
-        path: '/',
-        maxAge: 60 * 60 * 24,
-    })
+   
+    setTokenCookie(event, accessToken)
 
    return sendRedirect(event, '/')
 })
